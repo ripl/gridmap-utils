@@ -5,7 +5,7 @@
 
 #include "gridmap.h"
 
-#include <gridmap_lcmtypes/ripl_gridmap_tile_t.h>
+#include <lcmtypes/ripl_gridmap_tile_t.h>
 
 /** Given a current gridmap, import the data and realign the gridmap
     so that pos[] is near the center.  If the provided gridmap is NULL
