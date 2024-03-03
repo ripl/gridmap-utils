@@ -1,7 +1,17 @@
-add_definitions(
-    -std=gnu99
-    -msse2
-)
+if(${CMAKE_SYSTEM_PROCESSOR} MATCHES arm*)
+    add_compile_options(
+        -march=armv8-a+fp+simd#+crypto+crc
+        -std=gnu99)   
+elseif(${CMAKE_SYSTEM_PROCESSOR} MATCHES amd64* OR ${CMAKE_SYSTEM_PROCESSOR} MATCHES x86_64*)
+    add_compile_options(
+        -std=gnu99
+        -msse2)
+elseif(${CMAKE_SYSTEM_PROCESSOR} MATCHES i686* OR ${CMAKE_SYSTEM_PROCESSOR} MATCHES x86)
+    add_compile_options(
+        -std=gnu99
+        -msse2)
+endif () 
+
 
 file(GLOB c_files *.c)
 file(GLOB h_files *.h)

@@ -1480,7 +1480,17 @@ static inline double max_d(double a, double b)
   return 0;
   }
 */
-#include <emmintrin.h>
+
+#ifdef __SSE2__
+    #include <emmintrin.h>
+#else
+    #ifdef __aarch64__
+        #include "sse2neon.h"
+    #else
+        #warning SSE2 support is not available. Code will not compile
+    #endif
+#endif
+
 
 static inline __m128 _mm_abs_ps(__m128 v)
 {
